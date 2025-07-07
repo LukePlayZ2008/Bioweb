@@ -7,17 +7,18 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
   <style>
+    * {
+      box-sizing: border-box;
+    }
     body {
       margin: 0;
       font-family: 'Poppins', sans-serif;
       background: linear-gradient(to bottom right, #3f0d6b, #8e44ad, #d18fff);
       color: white;
       display: flex;
-      justify-content: center;
-      align-items: center;
+      flex-direction: column;
       min-height: 100vh;
       padding: 20px;
-      flex-direction: column;
     }
     .card {
       background-color: rgba(255, 255, 255, 0.1);
@@ -27,6 +28,8 @@
       width: 100%;
       box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
       text-align: center;
+      margin: auto;
+      flex: 1;
     }
     .profile-pic {
       width: 120px;
@@ -54,15 +57,53 @@
       margin-bottom: 20px;
       text-align: left;
     }
-    .section h3 {
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       margin-bottom: 10px;
+    }
+    .section-header h3 {
+      margin: 0;
       color: #d1b3ff;
       font-size: 18px;
     }
-    .section p {
-      margin: 5px 0;
+    .toggle-btn {
+      background: none;
+      border: none;
+      color: #d1b3ff;
+      cursor: pointer;
       font-size: 14px;
     }
+    .pay-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .pay-item img {
+      width: 30px;
+      height: 30px;
+      border-radius: 6px;
+      object-fit: cover;
+    }
+    .account-info {
+      flex-grow: 1;
+      font-size: 13px;
+    }
+    .copy-btn {
+      background-color: #a95cd6;
+      border: none;
+      color: white;
+      padding: 5px 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 12px;
+    }
+    .copy-btn:hover {
+      background-color: #7e39a3;
+    }
+
     .links a {
       display: flex;
       align-items: center;
@@ -74,50 +115,132 @@
       border-radius: 10px;
       color: white;
       text-decoration: none;
-      transition: background 0.3s;
+      transition: background 0.3s, transform 0.2s;
       font-size: 15px;
     }
     .links a:hover {
       background-color: #7e39a3;
+      transform: scale(1.03);
     }
     .links i {
       font-size: 18px;
     }
+
+    .more-payments {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease, opacity 0.3s ease;
+      opacity: 0;
+    }
+    .more-payments.show {
+      max-height: 1000px;
+      opacity: 1;
+      margin-top: 10px;
+    }
+
     footer {
       margin-top: 20px;
       font-size: 14px;
       color: #e0e0e0;
+      text-align: center;
     }
   </style>
 </head>
 <body>
   <div class="card">
     <div class="profile-pic">
-      <img src="https://i.ibb.co/p6B9K3cm/IMG-20250407-183004.jpg" alt="Profile Picture" />
+      <img src="https://i.ibb.co/p6B9K3cm/IMG-20250407-183004.jpg" alt="Luke's profile picture" />
     </div>
     <h1>Yé Lin Khant</h1>
     <h2>Also known as: Luke</h2>
 
+    <!-- About Me -->
     <div class="section">
       <h3>About Me</h3>
       <p><strong>Date of Birth:</strong> April 30, 2008</p>
     </div>
 
+<!-- Contact -->
+<div class="section">
+  <h3>Contact</h3>
+  <p><strong>Phone:</strong> <a href="tel:+959255324462" style="color: inherit; text-decoration: none;">+959255324462</a></p>
+  <p><strong>Emails:</strong><br/>
+    <a href="mailto:   lukepersonal69@gmail.com" style="color: inherit; text-decoration: none;">lukepersonal69@gmail.com</a><br/>
+    <a href="mailto:   lukepersonal69@hotmail.com" style="color: inherit; text-decoration: none;">lukepersonal69@hotmail.com</a>
+  </p>
+</div>
+
+    <!-- Payment Methods -->
     <div class="section">
-      <h3>Contact</h3>
-      <p><strong>Phone:</strong> +959255324462</p>
-      <p><strong>Email 1:</strong> lukepersonal69@hotmail.com</p>
-      <p><strong>Email 2:</strong> lukepersonal69@gmail.com</p>
+      <div class="section-header">
+        <h3>Payment Methods</h3>
+        <button class="toggle-btn" id="toggleBtn" onclick="togglePayments()">See More</button>
+      </div>
+
+      <div class="pay-item">
+        <img src="https://i.imgur.com/E16kAVt.png" alt="KBZPay" />
+        <div class="account-info">09776283453<br/>Yé Lin Khant</div>
+        <button class="copy-btn" onclick="copyText('09776283453')">Copy</button>
+      </div>
+      <div class="pay-item">
+        <img src="https://i.imgur.com/OegN1e3.png" alt="WavePay" />
+        <div class="account-info">09255324462<br/>Than Than</div>
+        <button class="copy-btn" onclick="copyText('09255324462')">Copy</button>
+      </div>
+
+      <div class="more-payments" id="morePayments">
+        <div class="pay-item">
+          <img src="https://i.imgur.com/hgXCMZW.png" alt="AYA Pay" />
+          <div class="account-info">09255324462<br/>San San Nwe</div>
+          <button class="copy-btn" onclick="copyText('09255324462')">Copy</button>
+        </div>
+        <div class="pay-item">
+          <img src="https://i.imgur.com/nzss0bJ.png" alt="CB Pay" />
+          <div class="account-info">09265307487<br/>DAW SAN SAN NWE
+          </div>
+          <button class="copy-btn" onclick="copyText('09255324462')">Copy</button>
+        </div>
+        <div class="pay-item">
+          <img src="https://i.imgur.com/sgRomHN.png" alt="UAB Pay" />
+          <div class="account-info">09255324462<br/>San San Nwe</div>
+          <button class="copy-btn" onclick="copyText('09255324462')">Copy</button>
+        </div>
+        <div class="pay-item">
+          <img src="https://i.imgur.com/6WPHdb4.png" alt="Binance Pay" />
+          <div class="account-info">952033031</div>
+          <button class="copy-btn" onclick="copyText('952033031')">Copy</button>
+        </div>
+      </div>
     </div>
 
-    <div class="section links">
-      <h3>Contact via Social Media</h3>
-      <a href="https://www.facebook.com/LukePlayZ120" target="_blank"><i class="fab fa-facebook"></i> Facebook</a>
-      <a href="https://www.tiktok.com/@codebyluke" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a>
-      <a href="https://t.me/m/Z8bEbblWZjY1" target="_blank"><i class="fab fa-telegram"></i> Telegram Account</a>
-      <a href="https://t.me/Luke_Support_bot" target="_blank"><i class="fas fa-robot"></i> Telegram Bot</a>
-    </div>
-  </div>
-  <footer>2025©LukePlayZ</footer>
+    <!-- Social Media Links -->
+<div class="section links">
+  <h3>Contact via Social Media</h3>
+  <a href="https://www.facebook.com/LukePlayZ120" target="_blank"><i class="fab fa-facebook"></i> Facebook</a>
+  <a href="https://www.tiktok.com/@codebyluke" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a>
+  <a href="https://t.me/Luke_PlayZ" target="_blank"><i class="fab fa-telegram"></i> Telegram Account</a>
+  <a href="https://t.me/Luke_Support_bot" target="_blank"><i class="fas fa-robot"></i> Telegram Bot</a>
+  <a href="https://discordapp.com/users/1057866601472479292" target="_blank"><i class="fab fa-discord"></i> Discord</a>
+</div>
+
+ <footer>
+  2025©LukePlayZ<br/>
+  Made with ❤️ by Luke | 2025
+</footer>
+
+  <script>
+    function copyText(text) {
+      navigator.clipboard.writeText(text).then(() => {
+        alert("Copied: " + text);
+      });
+    }
+
+    function togglePayments() {
+      const more = document.getElementById("morePayments");
+      const btn = document.getElementById("toggleBtn");
+      more.classList.toggle("show");
+      btn.textContent = more.classList.contains("show") ? "See Less" : "See More";
+    }
+  </script>
 </body>
 </html>
