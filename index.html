@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Website Under Maintenance</title>
+  <title>Under Maintenance</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
   <style>
     * {
@@ -147,25 +147,73 @@
     <div class="time-title">Current Time</div>
     <div class="big-clock" id="time">--:--</div>
     <div class="date-text" id="date">Loading date...</div>
+  </div><!-- Main Message -->
+<div class="container">
+  <div class="construction-svg">
+    <!-- SVG Animation -->
+    <svg width="200" height="160" viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg">
+      <!-- Ground -->
+      <rect y="140" width="200" height="20" fill="#d7ccc8" />
+
+      <!-- Crane arm -->
+      <rect x="40" y="20" width="100" height="6" fill="#ff9800">
+        <animateTransform attributeName="transform" type="translate" values="0,0; -5,0; 0,0" dur="3s" repeatCount="indefinite" />
+      </rect>
+
+      <!-- Crane hook line -->
+      <line x1="140" y1="26" x2="140" y2="80" stroke="#333" stroke-width="3">
+        <animate attributeName="y2" values="80;90;80" dur="2s" repeatCount="indefinite" />
+      </line>
+
+      <!-- Hook -->
+      <rect x="135" y="80" width="10" height="14" rx="2" fill="#555">
+        <animateTransform attributeName="transform" type="rotate" values="-5 140 87; 5 140 87; -5 140 87" dur="2s" repeatCount="indefinite" />
+      </rect>
+
+      <!-- Caution sign -->
+      <polygon points="70,100 90,60 110,100" fill="#ffeb3b" stroke="#333" stroke-width="2">
+        <animateTransform attributeName="transform" type="rotate" values="-5 90 80; 5 90 80; -5 90 80" dur="2s" repeatCount="indefinite" />
+      </polygon>
+      <text x="90" y="85" text-anchor="middle" font-size="14" font-weight="bold" fill="#333">!</text>
+
+      <!-- Worker body -->
+      <circle cx="40" cy="110" r="12" fill="#2196f3">
+        <animateTransform attributeName="transform" type="translate" values="0,0;0,-3;0,0" dur="1.5s" repeatCount="indefinite" />
+      </circle>
+
+      <!-- Worker head -->
+      <circle cx="40" cy="92" r="8" fill="#ffcc80" />
+      <!-- Helmet -->
+      <path d="M32,92 a8,8 0 0,1 16,0 v2 h-16z" fill="#ff9800" stroke="#e65100" stroke-width="1" />
+
+      <!-- Blinking light -->
+      <circle cx="160" cy="40" r="6" fill="#f44336">
+        <animate attributeName="fill" values="#f44336;#ffc107;#f44336" dur="1s" repeatCount="indefinite" />
+      </circle>
+    </svg>
   </div>
 
-  <!-- Main Message -->
-  <div class="container">
-    <div class="icon">🛠️</div>
-    <h1>We're Under Maintenance</h1>
-    <p>Our website is currently undergoing maintenance.<br>We’ll be back shortly. Thank you for your patience.</p>
-    <div class="loader-dots">
-      <div class="dot"></div>
-      <div class="dot"></div>
-      <div class="dot"></div>
-    </div>
+  <h1>We're Under Maintenance</h1>
+  <p>Our website is currently undergoing maintenance.<br>We’ll be back shortly. Thank you for your patience.</p>
+  <div class="loader-dots">
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
   </div>
+</div>
+
+<style>
+.construction-svg {
+  margin-bottom: 12px;
+}
+</style>
+
 
   <!-- Footer Contact -->
   <footer>
-    <div class="footer-title">Contact Developer Team</div>
+    <div class="footer-title">Contact Administrator</div>
     <div class="button-group">
-      <a href="mailto:personal@lukeplayz.online" class="contact-button">Email</a>
+      <a href="mailto:contact@lukeplayz.online" class="contact-button">Email</a>
       <a href="https://t.me/Luke_PlayZ" class="contact-button" target="_blank">Telegram</a>
     </div>
   </footer>
